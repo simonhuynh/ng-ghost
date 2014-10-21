@@ -1,0 +1,60 @@
+<!doctype html>
+<html ng-app="ghostWordGame">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"></script>
+	<script src="ghostWordGame.js"></script>
+  	<link rel="stylesheet" href="ghostWordGame.css">
+  </head>
+  <body>
+    <div id='wrapper'>	
+	
+	
+      <label>Your name:</label>
+      <input type="text" ng-model="yourName" placeholder="Enter a name here" value="{{yourName}}" >
+<br><br>
+		<div ng-show="yourName">
+      		<h1 >Hi {{yourName}}! Let's play Ghost! </h1>
+		</div> <!-- yourName show -->
+		
+
+		<br><br>
+		<span>This is <a href="http://en.wikipedia.org/wiki/Ghost_(game)">Ghost</a>.  Try not to form a complete word more than three letters long.</span><br><br>
+		<span> You can go first.</span>
+		<br>
+	<div ng-controller="GhostController">	
+
+		  <h2>Current Word:</h2>
+
+		<h1 id="word-display">{{currentWord}}</h1>
+		
+		<form ng-submit="usersTurn()">
+        <input type="text" ng-model="newLetter"  size="1"
+               placeholder="">
+        <input class="btn-primary ghost-bttn" type="submit" value="add a letter">
+      </form>
+
+		<br><br>
+		<span class="turns {{turnTaker[currentTurnTaker].class}}" > {{turnTaker[currentTurnTaker].whose}} Turn! </span>
+		<br><br>
+		<div ng-show="winner" class='declare-winner'> <h2>{{currentWord}} is in the dictionary!  {{winner}}</h2> <a href=".">Reload this page to play again!</a><br><br></div>
+		<div ng-show="wordInvalid" class='disqualified'><h2>{{currentWord}} is not in the dictionary!</h2></div>
+		
+		<button ng-click="hardMode = !hardMode" class="ghost-bttn">Hard Mode</button> 
+		<span ng-show="hardMode" class='hard-mode'>Hard Mode!</span>
+		<br>
+		<br>
+		<button ng-click="cheat= !cheat" class="ghost-bttn">Cheat Mode</button>
+		<div ng-show="cheat"> <!-- cheat section -->
+			<table id='viableWords'>
+				<tr><th>potentially relevant dictionary words:</th></tr>
+				<tr ng-repeat="word in viableWords"><td>{{word}}</td></tr>
+			</table>
+		</div> <!-- end THE CHEAT -->
+		
+    </div> <!-- end GhostController -->
+
+	</div><!-- #wrapper -->
+	
+	
+  </body>
+</html>

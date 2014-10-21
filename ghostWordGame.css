@@ -1,0 +1,32 @@
+span {
+	padding:5px;
+}
+.turns{
+	color:white;	
+}
+
+.myTurn{
+	background-color:red;
+}
+
+.yourTurn{
+	background-color:green;
+}
+
+.declare-winner{
+	color:blue;
+}
+
+.ghost-bttn {
+	padding:5px;
+}
+
+.disqualified {
+	color:red;
+}
+
+.hard-mode {
+	background-color:red;
+	color:white;
+	margin:5px;
+}
