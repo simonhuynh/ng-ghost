@@ -89,14 +89,22 @@ function GhostController($scope, $http) {
 		var wayToWin = false;
 		if ($scope.hardMode) {
 			$scope.computerWinWords = $scope.viableWords.map(function(word,i,arr) {
-				if ( ((word.length - $scope.currentWord.length) % 2 == 0 ) && ($scope.currentWord.length < word.length) ) {
-					wayToWin = true;
-					return word;
+				if ( ((word.length - $scope.currentWord.length) % 2 == 0 ) && ($scope.currentWord.length < word.length) && (word.length > 3) ) {
+					var containsShorter = false;
+					for (var i=3 ; i < word.length - 1 ; i++ ) {
+						if ( $scope.viableWords.indexOf( word.slice(0,i+1) ) > -1 ) {
+							containsShorter = true;
+							break;
+						}
+					}
+					if (!containsShorter) {
+						wayToWin = true;
+						return word;
+					}
 				}
 			}).filter(function(e){return e});
-			$scope.newLetter = $scope.computerWinWords[Math.floor($scope.random(0, $scope.computerWinWords.length))][$scope.currentWord.length];
 		}
-		if (!wayToWin) $scope.newLetter = $scope.dictionary[Math.floor($scope.random($scope.dictionaryBeginIndex+1, $scope.dictionaryEndIndex))][$scope.currentWord.length];
+		$scope.newLetter = (wayToWin) ? $scope.computerWinWords[Math.floor($scope.random(0, $scope.computerWinWords.length))][$scope.currentWord.length] : $scope.dictionary[Math.floor($scope.random($scope.dictionaryBeginIndex+1, $scope.dictionaryEndIndex))][$scope.currentWord.length];
 		$scope.addLetter();
 		$scope.toggleTurn();
 	}
