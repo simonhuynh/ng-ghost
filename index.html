@@ -36,8 +36,10 @@
 		<br><br>
 		<span class="turns {{turnTaker[currentTurnTaker].class}}" > {{turnTaker[currentTurnTaker].whose}} Turn! </span>
 		<br><br>
-		<div ng-show="winner" class='declare-winner'> <h2>{{currentWord}} is in the dictionary!  {{winner}}</h2> 
+		<div ng-show="winner" class='declare-winner'> <h2>{{currentWord}} is in the dictionary!  {{winner}}</h2>
+<!-- 
 		  <button ng-click="reset" class="ghost-bttn">Play Again</button><br><br></div>
+-->
 		<div ng-show="wordInvalid" class='disqualified'><h2>{{currentWord}} is not in the dictionary!</h2></div>
 		
 		<button ng-click="hardMode = !hardMode" class="ghost-bttn">Hard Mode</button> 
